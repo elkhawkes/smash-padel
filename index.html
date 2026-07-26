@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Run Americano & Mexicano padel tournaments from your phone — automatic matchmaking, live leaderboard and momentum stats, works fully offline. Coming soon to Google Play.">
+<meta name="description" content="Run Americano & Mexicano padel tournaments from your phone — automatic matchmaking, live leaderboard, fun post-match stats and Fair Ending. Works fully offline. Coming soon to Google Play.">
 <meta name="theme-color" content="#10B981">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="canonical" href="https://elkhawkes.github.io/smash-padel/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Smash! Padel Manager">
 <meta property="og:title" content="Smash! — Padel Manager">
-<meta property="og:description" content="Run Americano & Mexicano padel tournaments from your phone — automatic matchmaking, live leaderboard and momentum stats, works fully offline. Coming soon to Google Play.">
+<meta property="og:description" content="Run Americano & Mexicano padel tournaments from your phone — automatic matchmaking, live leaderboard, fun post-match stats and Fair Ending. Works fully offline. Coming soon to Google Play.">
 <meta property="og:image" content="https://elkhawkes.github.io/smash-padel/og-image.png">
 <meta property="og:url" content="https://elkhawkes.github.io/smash-padel/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Smash! — Padel Manager">
-<meta name="twitter:description" content="Run Americano & Mexicano padel tournaments from your phone — automatic matchmaking, live leaderboard and momentum stats, works fully offline. Coming soon to Google Play.">
+<meta name="twitter:description" content="Run Americano & Mexicano padel tournaments from your phone — automatic matchmaking, live leaderboard, fun post-match stats and Fair Ending. Works fully offline. Coming soon to Google Play.">
 <meta name="twitter:image" content="https://elkhawkes.github.io/smash-padel/og-image.png">
 <style>html{-webkit-text-size-adjust:100%}img,svg{vertical-align:middle}</style>
 <title>Smash! Padel Manager</title>
@@ -24,7 +24,7 @@
     --ground:#F4F7F5; --surface:#FFFFFF; --surface-2:#EDF2EF;
     --ink:#0C1A14; --muted:#5B6B63; --line:#E1E9E4;
     --brand:#10B981; --brand-deep:#065F46; --brand-ink:#053D2C;
-    --gold:#F59E0B;
+    --gold:#F59E0B; --danger:#EF4444;
     --hero-1:#10B981; --hero-2:#0B7A5B; --hero-ink:#EAFBF3; --hero-soft:#B9EBD8;
     --shadow:0 20px 50px -24px rgba(6,60,44,.45);
     --maxw:1120px;
@@ -34,7 +34,7 @@
       --ground:#08120E; --surface:#0F1D17; --surface-2:#132419;
       --ink:#EAF2ED; --muted:#94A79D; --line:#1E2E25;
       --brand:#34D399; --brand-deep:#0B7A5B; --brand-ink:#EAFBF3;
-      --gold:#FBBF24;
+      --gold:#FBBF24; --danger:#F87171;
       --hero-1:#0B6B50; --hero-2:#053C2C; --hero-ink:#EAFBF3; --hero-soft:#9FD9C4;
       --shadow:0 24px 60px -28px rgba(0,0,0,.7);
     }
@@ -164,6 +164,32 @@
   @media (prefers-color-scheme:dark){ footer a{ color:var(--brand); } }
   footer a:hover{ text-decoration:underline; }
 
+  /* results / stats section */
+  .results{ background:var(--surface-2); }
+  .results-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .results-grid h2{ font-size:clamp(28px,4vw,44px); letter-spacing:-.02em; line-height:1.02; margin-top:10px; }
+  .results-lede{ color:var(--muted); font-size:17px; margin:16px 0 26px; max-width:42ch; }
+  .hl{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:18px; }
+  .hl li{ display:flex; gap:14px; align-items:flex-start; }
+  .hl-ic{ font-size:22px; line-height:1.3; flex:none; }
+  .hl b{ display:block; font-size:16px; margin-bottom:2px; }
+  .hl p{ margin:0; color:var(--muted); font-size:14.5px; line-height:1.5; }
+  .statcard{ background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:22px; box-shadow:var(--shadow); }
+  .sc-head{ display:flex; align-items:center; justify-content:space-between; }
+  .sc-name{ font-size:22px; font-weight:800; color:var(--brand-deep); letter-spacing:-.01em; }
+  .sc-sub{ font-size:12.5px; color:var(--muted); }
+  .sc-rank{ font-family:"Arial Black","Helvetica Neue",Arial,sans-serif; font-size:26px; color:var(--muted); }
+  .sc-tiles{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:16px 0; }
+  .sc-tile{ background:color-mix(in srgb, var(--brand) 12%, var(--surface)); border-radius:12px; padding:12px 4px; text-align:center; }
+  .sc-tile b{ display:block; font-size:20px; font-weight:900; font-variant-numeric:tabular-nums; }
+  .sc-tile span{ font-size:10px; color:var(--muted); }
+  .sc-h2h{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 12px; background:var(--surface-2); border-radius:10px; margin-bottom:8px; font-size:13px; }
+  .sc-h2h b{ font-weight:800; white-space:nowrap; }
+  .sc-mom-label{ font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:16px 0 8px; }
+  .statcard svg.mom{ width:100%; height:auto; display:block; }
+  :root[data-theme="dark"] .sc-name{ color:var(--brand); }
+  @media (prefers-color-scheme:dark){ .sc-name{ color:var(--brand); } }
+
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:none; }
 
@@ -171,6 +197,7 @@
     .hero .wrap{ grid-template-columns:1fr; gap:34px; padding-bottom:56px; }
     .phone{ transform:none; }
     .formats,.features,.gallery,.steps{ grid-template-columns:1fr 1fr; }
+    .results-grid{ grid-template-columns:1fr; gap:34px; }
   }
   @media (max-width:620px){
     .formats,.features,.gallery,.steps{ grid-template-columns:1fr; }
@@ -255,11 +282,46 @@
     </div>
     <div class="features">
       <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h6M4 12h9M4 17h5"/><circle cx="18" cy="8" r="2.4"/><circle cx="16" cy="16" r="2.4"/></svg></div><h3>Smart matchmaking</h3><p>A fair rotation that remembers who's partnered with and played against whom.</p></div>
-      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M9.5 20V4M15 20v-7M20.5 20V8"/></svg></div><h3>Live leaderboard &amp; momentum</h3><p>Tap any player for win/loss record, streaks, best partner and a momentum chart.</p></div>
+      <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 21V9M12 21V4M18 21v-8"/><path d="M3 21h18"/></svg></div><h3>Live leaderboard</h3><p>Ranked by points with point-difference tie-breaks, updating after every match.</p></div>
       <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/></svg></div><h3>Match timer</h3><p>A round countdown with a buzz on your phone when time's up.</p></div>
       <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12a7 7 0 0 1 7-7 7 7 0 0 1 7 7 7 7 0 0 1-7 7"/><path d="M12 5a7 7 0 0 0 0 14"/><path d="M3 12h4"/></svg></div><h3>Works offline</h3><p>No account, no internet. Auto-saves every 2 seconds and nothing leaves your phone.</p></div>
       <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h8l6 6v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 4v6h6"/><path d="M9 20v-5"/></svg></div><h3>Archives &amp; rematch</h3><p>Every tournament saved with full scoreboards — replay the same line-up in one tap.</p></div>
       <div class="feat reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v11m0 0 4-4m-4 4-4-4"/><path d="M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg></div><h3>Export &amp; share</h3><p>Save the schedule and results as PDF or CSV, or share the standings anywhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="results">
+  <div class="wrap">
+    <div class="results-grid">
+      <div class="reveal">
+        <div class="eyebrow">After the final point</div>
+        <h2 class="display">Stats worth<br>arguing over.</h2>
+        <p class="results-lede">The best part of any padel social is the debrief. Smash! turns every result into shareable bragging rights — and keeps the standings fair when the schedule doesn't cooperate.</p>
+        <ul class="hl">
+          <li><span class="hl-ic">📈</span><div><b>Player momentum</b><p>Tap anyone for a match-by-match momentum chart — wins climb, losses dip — with win rate, point diff and hot streaks.</p></div></li>
+          <li><span class="hl-ic">🤝</span><div><b>Best partner &amp; toughest opponent</b><p>See who you win most alongside, and who always seems to have your number.</p></div></li>
+          <li><span class="hl-ic">⚖️</span><div><b>Fair Ending</b><p>Had to stop early with uneven games played? Switch it on and Smash! projects each player's missing matches from their average, so the final table is mathematically fair.</p></div></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="statcard">
+          <div class="sc-head">
+            <div><div class="sc-name">Erling</div><div class="sc-sub">🔥 3 wins in a row</div></div>
+            <div class="sc-rank">#1</div>
+          </div>
+          <div class="sc-tiles">
+            <div class="sc-tile"><b>6</b><span>Won</span></div>
+            <div class="sc-tile"><b>1</b><span>Lost</span></div>
+            <div class="sc-tile"><b>86%</b><span>Win rate</span></div>
+            <div class="sc-tile"><b>+26</b><span>Diff</span></div>
+          </div>
+          <div class="sc-h2h"><span>🤝 Best partner</span><b>Sarah · 4W&nbsp;1L</b></div>
+          <div class="sc-h2h"><span>😤 Toughest opponent</span><b>Mike · 1W&nbsp;3L</b></div>
+          <div class="sc-mom-label">Momentum</div>
+          <svg class="mom" viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="0" y1="65" x2="340" y2="65" stroke="var(--line)" stroke-width="1.5"/><rect x="10.6" y="30.3" width="21.2" height="34.7" rx="3" fill="var(--brand)"/><rect x="53.1" y="47.7" width="21.2" height="17.3" rx="3" fill="var(--brand)"/><rect x="95.6" y="65.0" width="21.2" height="8.7" rx="3" fill="var(--danger)"/><rect x="138.1" y="21.7" width="21.2" height="43.3" rx="3" fill="var(--brand)"/><rect x="180.6" y="39.0" width="21.2" height="26.0" rx="3" fill="var(--brand)"/><rect x="223.1" y="65.0" width="21.2" height="17.3" rx="3" fill="var(--danger)"/><rect x="265.6" y="13.0" width="21.2" height="52.0" rx="3" fill="var(--brand)"/><rect x="308.1" y="56.3" width="21.2" height="8.7" rx="3" fill="var(--brand)"/><polyline points="21.2,53.4 63.8,47.7 106.2,50.6 148.8,36.1 191.2,27.4 233.8,33.2 276.2,15.9 318.8,13.0" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21.2" cy="53.4" r="2.6" fill="var(--gold)"/><circle cx="63.8" cy="47.7" r="2.6" fill="var(--gold)"/><circle cx="106.2" cy="50.6" r="2.6" fill="var(--gold)"/><circle cx="148.8" cy="36.1" r="2.6" fill="var(--gold)"/><circle cx="191.2" cy="27.4" r="2.6" fill="var(--gold)"/><circle cx="233.8" cy="33.2" r="2.6" fill="var(--gold)"/><circle cx="276.2" cy="15.9" r="2.6" fill="var(--gold)"/><circle cx="318.8" cy="13.0" r="2.6" fill="var(--gold)"/></svg>
+        </div>
+      </div>
     </div>
   </div>
 </section>
