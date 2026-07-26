@@ -101,9 +101,10 @@
   .ghost:hover{ opacity:1; }
 
   /* phone */
-  .phone{ position:relative; width:min(300px,78%); margin:0 auto; aspect-ratio:1200/2670; border-radius:36px;
-    background:#0a0f0d; padding:10px; box-shadow:0 40px 80px -30px rgba(0,0,0,.6), 0 0 0 2px rgba(255,255,255,.08) inset; transform:rotate(2.2deg); }
-  .phone img{ width:100%; height:100%; object-fit:cover; border-radius:27px; display:block; background:#fff; }
+  /* frame ratio matches the screenshot files (1252x2503) so nothing is cropped */
+  .phone{ position:relative; width:min(288px,80%); margin:0 auto; aspect-ratio:1252/2503; border-radius:30px; overflow:hidden;
+    background:var(--surface); box-shadow:0 40px 80px -32px rgba(0,0,0,.55), 0 0 0 1px var(--line); transform:rotate(1.4deg); }
+  .phone img{ width:100%; height:100%; object-fit:cover; display:block; }
   .phone.small{ transform:none; box-shadow:var(--shadow), 0 0 0 1px var(--line); }
 
   /* momentum strip */
